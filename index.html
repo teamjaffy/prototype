@@ -14,10 +14,10 @@
 		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
 		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
 
-		<!--Firebase-->
+        <!--Firebase-->
 
-		<script src="https://www.gstatic.com/firebasejs/4.2.0/firebase.js"></script>
-		<script>
+        <script src="https://www.gstatic.com/firebasejs/4.2.0/firebase.js"></script>
+        <script>
             // Initialize Firebase
             var config = {
                 apiKey: "AIzaSyB_s6tBrsLSxcxDe9_XcKE7mCHeP5uJCVI",
@@ -28,9 +28,7 @@
                 messagingSenderId: "1045603493724"
             };
             firebase.initializeApp(config);
-		</script>
-
-
+        </script>
 	</head>
 	<body>
 		<!-- Wrapper -->
@@ -71,9 +69,14 @@
 					<div id="main">
 						<div class="inner">
 							<header>
-								<h1>This is Phantom, a free, fully responsive site<br />
-								template designed by <a href="http://html5up.net">HTML5 UP</a>.</h1>
-								<p>Etiam quis viverra lorem, in semper lorem. Sed nisl arcu euismod sit amet nisi euismod sed cursus arcu elementum ipsum arcu vivamus quis venenatis orci lorem ipsum et magna feugiat veroeros aliquam. Lorem ipsum dolor sit amet nullam dolore.</p>
+								<script>
+									var database = firebase.database();
+                                    database.ref('/').once('value').then(function(snapshot) {
+                                        var username = snapshot.val();
+                                        console.log(username)
+                                    });
+								</script>
+
 							</header>
 							<section class="tiles">
 								<article class="style1">
@@ -259,6 +262,8 @@
 			<script src="assets/js/util.js"></script>
 			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
 			<script src="assets/js/main.js"></script>
+
+
 
 	</body>
 </html>
