@@ -29,10 +29,20 @@
             };
             firebase.initializeApp(config);
         </script>
+
+        <script>
+            var database = firebase.database();
+            database.ref('/').once('value').then(function(snapshot) {
+                var username = snapshot.val();
+                console.log(username)
+            });
+        </script>
+
 	</head>
 	<body>
 		<!-- Wrapper -->
 			<div id="wrapper">
+
 
 				<!-- Header -->
 					<header id="header">
@@ -65,17 +75,20 @@
 						</ul>
 					</nav>
 
+
+
+                <!--Searchbar-->
+                <form id="searchBar">
+                    <input type="text" name="search" placeholder="Search..">
+                </form>
+
+
 				<!-- Main -->
+
 					<div id="main">
 						<div class="inner">
 							<header>
-								<script>
-									var database = firebase.database();
-                                    database.ref('/').once('value').then(function(snapshot) {
-                                        var username = snapshot.val();
-                                        console.log(username)
-                                    });
-								</script>
+
 
 							</header>
 							<section class="tiles">
