@@ -47,20 +47,10 @@
         </script>
 
         <script>
-            var database = firebase.database();
-            database.ref('/').once('value').then(function(snapshot) {
-                var firebaseData = snapshot.val();
-                console.log(firebaseData)
-//
-//                var auto = {};
-//                for(var x in firebaseData){
-//                    auto[x]= null;}
-//                $('input.autocomplete').autocomplete({
-//                    data: auto,
-//                limit: 20, // The max amount of results that can be shown at once. Default: Infinity.
-//                minLength: 1// The minimum length of the input for the autocomplete to start. Default: 1.
-//            });
-            });
+//            var database = firebase.database();
+//            database.ref('/').once('value').then(function(snapshot) {
+//                var firebaseData = snapshot.val();
+//                console.log(firebaseData)
 
 
 
@@ -81,12 +71,6 @@
 									<span class="symbol"><img src="images/logo.svg" alt="" /></span><span class="title">Introducing Team Jaffy</span>
 								</a>
 
-							<!-- Nav -->
-								<!--<nav>-->
-									<!--<ul>-->
-										<!--<li><a href="#menu">Menu</a></li>-->
-									<!--</ul>-->
-								<!--</nav>-->
 
 						</div>
 					</header>
@@ -109,17 +93,6 @@
                     <input type="text" name="search" class="autocomplete" id="search" placeholder="Search.." onchange="formChanged()">
                 </form>
 
-                <!--<div class="row">-->
-                    <!--<div class="col s12">-->
-                        <!--<div class="row">-->
-                            <!--<div class="input-field col s12">-->
-                                <!--<i class="material-icons prefix">textsms</i>-->
-                                <!--<input type="text" id="autocomplete-input" class="autocomplete">-->
-                                <!--<label for="autocomplete-input">Autocomplete</label>-->
-                            <!--</div>-->
-                        <!--</div>-->
-                    <!--</div>-->
-                <!--</div>-->
 
                 <!--Getting the searchQuery-->
 
@@ -146,18 +119,15 @@
                 // variable searchQuery is the query string
 
 
-                </script>
+                //Getting the search Query
 
-
-
-                <script>
-                    function formChanged() {
-                        var searchQuery = document.getElementById("search").value;
-                        console.log("Search Query:"+ searchQuery)
+                function formChanged() {
+                    var searchQuery = document.getElementById("search").value;
+                    console.log("Search Query:"+ searchQuery)
                     }
-
-
                 </script>
+
+
 
 				<!-- Main -->
 
@@ -169,18 +139,45 @@
 							</header>
                             <section class="printSearch">
                                 <div id="printBox">
-                                    Search Content:
+                                    Search Query:
                                 </div>
                                 <script>
                                     if(searchQuery!=null) {
                                         document.getElementById('printBox').innerHTML += searchQuery;
-                                    };
+                                    }
                                 </script>
+
+                                <div id="printPriceTest">
+                                    Search Result:
+                                </div>
 
 
                             </section>
 
+                            <script>
+                                //Getting the search retrieval
 
+                                var dataReceived;
+
+                                function getDataFromDatabase() {
+                                    var ref = firebase.database().ref("/Aldi/");
+                                    ref.once("value")
+                                        .then(function (snapshot) {
+                                            dataReceived = snapshot.child(searchQuery).val();
+                                            testPrint();
+                                        });
+
+                                }
+
+                                function testPrint(){
+                                    document.getElementById('printPriceTest').innerHTML += dataReceived;
+                                }
+
+                                if(searchQuery!=null){
+                                    getDataFromDatabase()
+                                }
+
+                            </script>
 
 							<section class="content_list">
                                 <!--<ul class="collapsible" data-collapsible="accordion">-->
