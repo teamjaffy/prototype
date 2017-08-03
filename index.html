@@ -160,7 +160,7 @@
                                 var dataReceived;
 
                                 function getDataFromDatabase() {
-                                    var ref = firebase.database().ref("/Aldi/");
+                                    var ref = firebase.database().ref("/Coles/");
                                     ref.once("value")
                                         .then(function (snapshot) {
                                             dataReceived = snapshot.child(searchQuery).val();
