@@ -10,11 +10,27 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
-		<link rel="stylesheet" href="assets/css/main.css" />
+
+        <!-- Compiled and minified CSS -->
+        <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.1/css/materialize.min.css">-->
+
+
+        <link rel="stylesheet" href="assets/css/main.css" />
 		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
 		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
 
-        <!--Firebase-->
+
+
+        <script
+                src="https://code.jquery.com/jquery-3.2.1.min.js"
+                integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+                crossorigin="anonymous"></script>
+		<!-- Compiled and minified JavaScript -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.1/js/materialize.min.js"></script>
+
+
+
+		<!--Firebase-->
 
         <script src="https://www.gstatic.com/firebasejs/4.2.0/firebase.js"></script>
         <script>
@@ -33,9 +49,21 @@
         <script>
             var database = firebase.database();
             database.ref('/').once('value').then(function(snapshot) {
-                var username = snapshot.val();
-                console.log(username)
+                var firebaseData = snapshot.val();
+                console.log(firebaseData)
+//
+//                var auto = {};
+//                for(var x in firebaseData){
+//                    auto[x]= null;}
+//                $('input.autocomplete').autocomplete({
+//                    data: auto,
+//                limit: 20, // The max amount of results that can be shown at once. Default: Infinity.
+//                minLength: 1// The minimum length of the input for the autocomplete to start. Default: 1.
+//            });
             });
+
+
+
         </script>
 
 	</head>
@@ -74,14 +102,24 @@
 							<li><a href="elements.html">Elements</a></li>
 						</ul>
 					</nav>
-
-
-
+                
 
                 <!--Searchbar-->
                 <form id="searchBar">
-                    <input type="text" name="search" id="search" placeholder="Search.." onchange="formChanged()">
+                    <input type="text" name="search" class="autocomplete" id="search" placeholder="Search.." onchange="formChanged()">
                 </form>
+
+                <!--<div class="row">-->
+                    <!--<div class="col s12">-->
+                        <!--<div class="row">-->
+                            <!--<div class="input-field col s12">-->
+                                <!--<i class="material-icons prefix">textsms</i>-->
+                                <!--<input type="text" id="autocomplete-input" class="autocomplete">-->
+                                <!--<label for="autocomplete-input">Autocomplete</label>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
 
                 <!--Getting the searchQuery-->
 
@@ -107,6 +145,7 @@
 
                 // variable searchQuery is the query string
 
+
                 </script>
 
 
@@ -116,6 +155,8 @@
                         var searchQuery = document.getElementById("search").value;
                         console.log("Search Query:"+ searchQuery)
                     }
+
+
                 </script>
 
 				<!-- Main -->
@@ -141,73 +182,15 @@
 
 
 
-							<section class="tiles">
-								<article class="style1">
-									<span class="image">
-										<img src="images/coles1.jpg" alt="" />
-									</span>
-									<a href="generic.html">
-										<h2>Magna</h2>
-										<div class="content">
-											<p>By Mtowngenius (talk) (Uploads) - Own work, Public Domain, https://en.wikipedia.org/w/index.php?curid=29782633</p>
-										</div>
-									</a>
-								</article>
-								<article class="style2">
-									<span class="image">
-										<img src="images/coles1.jpg" alt="" />
-									</span>
-									<a href="generic.html">
-										<h2>Lorem</h2>
-                                        <div class="content">
-                                            <p>By Mtowngenius (talk) (Uploads) - Own work, Public Domain, https://en.wikipedia.org/w/index.php?curid=29782633</p>
-                                        </div>
-									</a>
-								</article>
-								<article class="style3">
-									<span class="image">
-										<img src="images/coles1.jpg" alt="" />
-									</span>
-									<a href="generic.html">
-										<h2>Feugiat</h2>
-                                        <div class="content">
-                                            <p>By Mtowngenius (talk) (Uploads) - Own work, Public Domain, https://en.wikipedia.org/w/index.php?curid=29782633</p>
-                                        </div>
-									</a>
-								</article>
-								<article class="style4">
-									<span class="image">
-										<img src="images/coles1.jpg" alt="" />
-									</span>
-									<a href="generic.html">
-										<h2>Tempus</h2>
-                                        <div class="content">
-                                            <p>By Mtowngenius (talk) (Uploads) - Own work, Public Domain, https://en.wikipedia.org/w/index.php?curid=29782633</p>
-                                        </div>
-									</a>
-								</article>
-								<article class="style5">
-									<span class="image">
-										<img src="images/coles1.jpg" alt="" />
-									</span>
-									<a href="generic.html">
-										<h2>Aliquam</h2>
-                                        <div class="content">
-                                            <p>By Mtowngenius (talk) (Uploads) - Own work, Public Domain, https://en.wikipedia.org/w/index.php?curid=29782633</p>
-                                        </div>
-									</a>
-								</article>
-								<article class="style6">
-									<span class="image">
-										<img src="images/coles1.jpg" alt="" />
-									</span>
-									<a href="generic.html">
-										<h2>Veroeros</h2>
-                                        <div class="content">
-                                            <p>By Mtowngenius (talk) (Uploads) - Own work, Public Domain, https://en.wikipedia.org/w/index.php?curid=29782633</p>
-                                        </div>
-									</a>
-								</article>
+							<section class="content_list">
+                                <ul class="collapsible" data-collapsible="accordion">
+                                    <li>
+                                        <div class="collapsible-header">Chicken</div>
+                                        <div class="collapsible-body"><p>Is available at Coles for $10 per kg</p></div>
+                                    </li>
+                                </ul>
+
+
 							</section>
 						</div>
 					</div>
