@@ -12,7 +12,7 @@
 		@include padding(5em, 0, (0, 0, 3em, 0));
 		background-color: _palette(bg-alt);
 
-		> .inner {
+		> .innerCustom {
 			@include vendor('display', 'flex');
 			@include vendor('flex-wrap', 'wrap');
 			@include vendor('flex-direction', 'row');
@@ -64,7 +64,7 @@
 
 			@include padding(5em, 0);
 
-			> .inner {
+			> .innerCustom {
 				section:nth-child(1) {
 					width: calc(66% - #{$gutter});
 					margin-right: $gutter;
@@ -80,7 +80,7 @@
 		@include breakpoint(medium) {
 			$gutter: _size(gutter);
 
-			> .inner {
+			> .innerCustom {
 				section:nth-child(1) {
 					width: 66%;
 					margin-right: 0;
@@ -96,7 +96,7 @@
 		@include breakpoint(small) {
 			@include padding(3em, 0);
 
-			> .inner {
+			> .innerCustom {
 				@include vendor('flex-direction', 'column');
 
 				section:nth-child(1) {
@@ -118,7 +118,7 @@
 		}
 
 		@include breakpoint(xsmall) {
-			> .inner {
+			> .innerCustom {
 				.copyright {
 					margin-top: 3em;
 

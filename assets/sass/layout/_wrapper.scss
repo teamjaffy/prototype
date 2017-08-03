@@ -8,7 +8,7 @@
 
 	#wrapper {
 		> * {
-			> .inner {
+			> .innerCustom {
 				$gutter: _size(gutter);
 
 				width: 100%;

@@ -27,7 +27,7 @@
 		visibility: hidden;
 		z-index: _misc(z-index-base) + 2;
 
-		> .inner {
+		> .innerCustom {
 			@include vendor('transition', 'opacity #{_duration(menu)} ease');
 			-webkit-overflow-scrolling: touch;
 			position: absolute;
@@ -124,7 +124,7 @@
 			@include vendor('transform', 'translateX(#{_size(menu) * 0.75})');
 			width: (_size(menu) * 0.75);
 
-			> .inner {
+			> .innerCustom {
 				padding: 2.75em 1.5em;
 			}
 

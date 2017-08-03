@@ -12,7 +12,7 @@
 		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
 
         <!-- Compiled and minified CSS -->
-        <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.1/css/materialize.min.css">-->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.1/css/materialize.min.css">
 
 
         <link rel="stylesheet" href="assets/css/main.css" />
@@ -73,8 +73,8 @@
 
 
 				<!-- Header -->
-					<header id="header">
-						<div class="inner">
+					<header id="headerCustom">
+						<div class="innerCustom">
 
 							<!-- Logo -->
 								<a href="index.html" class="logo">
@@ -82,11 +82,11 @@
 								</a>
 
 							<!-- Nav -->
-								<nav>
-									<ul>
-										<li><a href="#menu">Menu</a></li>
-									</ul>
-								</nav>
+								<!--<nav>-->
+									<!--<ul>-->
+										<!--<li><a href="#menu">Menu</a></li>-->
+									<!--</ul>-->
+								<!--</nav>-->
 
 						</div>
 					</header>
@@ -162,7 +162,7 @@
 				<!-- Main -->
 
 					<div id="main">
-						<div class="inner">
+						<div class="innerCustom">
 							<header>
 
 
@@ -183,13 +183,26 @@
 
 
 							<section class="content_list">
-                                <ul class="collapsible" data-collapsible="accordion">
-                                    <li>
-                                        <div class="collapsible-header">Chicken</div>
-                                        <div class="collapsible-body"><p>Is available at Coles for $10 per kg</p></div>
-                                    </li>
-                                </ul>
+                                <!--<ul class="collapsible" data-collapsible="accordion">-->
+                                    <!--<li>-->
+                                        <!--<div class="collapsible-header">Chicken</div>-->
+                                        <!--<div class="collapsible-body"><p>Is available at Coles for $10 per kg</p></div>-->
+                                    <!--</li>-->
+                                <!--</ul>-->
 
+                            <br>
+                            <h3>Available stores:</h3>
+                            <ul class="collapsible popout" data-collapsible="expandable">
+                                <li>
+                                    <div class="collapsible-header active">Coles</div>
+                                    <div class="collapsible-body"><span>Available for $3.6 ea</span></div>
+                                </li>
+                                <li>
+                                    <div class="collapsible-header">Aldi</div>
+                                    <div class="collapsible-body"><span>Available at $4 ea</span></div>
+                                </li>
+
+                            </ul>
 
 							</section>
 						</div>
@@ -197,7 +210,7 @@
 
 				<!-- Footer -->
 					<footer id="footer">
-						<div class="inner">
+						<div class="innerCustom">
 							<section>
 								<h2>Get in touch</h2>
 								<form method="post" action="#">

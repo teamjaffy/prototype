@@ -46,28 +46,28 @@
 
 /* Header */
 
-	#header .logo .symbol {
+	#headerCustom .logo .symbol {
 		display: none;
 	}
 
-	#header nav ul li a[href="#menu"] {
+	#headerCustom nav ul li a[href="#menu"] {
 		text-indent: 0;
 		width: auto;
 		font-size: 0.8em;
 	}
 
-		#header nav ul li a[href="#menu"]:before, #header nav ul li a[href="#menu"]:after {
+		#headerCustom nav ul li a[href="#menu"]:before, #headerCustom nav ul li a[href="#menu"]:after {
 			display: none;
 		}
 
 /* Footer */
 
-	#footer > .inner section {
+	#footer > .innerCustom section {
 		width: 50%;
 		margin-left: 3em;
 	}
 
-		#footer > .inner section:first-child {
+		#footer > .innerCustom section:first-child {
 			margin-left: 0;
 			width: 40%;
 		}
