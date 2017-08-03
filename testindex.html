@@ -1,0 +1,259 @@
+<!DOCTYPE HTML>
+<!--
+	Phantom by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+<head>
+    <title>TeamJaffy Project</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.1/css/materialize.min.css">
+
+
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+    <!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+
+
+
+    <script
+            src="https://code.jquery.com/jquery-3.2.1.min.js"
+            integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+            crossorigin="anonymous"></script>
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.1/js/materialize.min.js"></script>
+
+
+
+    <!--Firebase-->
+
+    <script src="https://www.gstatic.com/firebasejs/4.2.0/firebase.js"></script>
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyB_s6tBrsLSxcxDe9_XcKE7mCHeP5uJCVI",
+            authDomain: "prototypedb-4dc8a.firebaseapp.com",
+            databaseURL: "https://prototypedb-4dc8a.firebaseio.com",
+            projectId: "prototypedb-4dc8a",
+            storageBucket: "prototypedb-4dc8a.appspot.com",
+            messagingSenderId: "1045603493724"
+        };
+        firebase.initializeApp(config);
+    </script>
+
+    <script>
+        //            var database = firebase.database();
+        //            database.ref('/').once('value').then(function(snapshot) {
+        //                var firebaseData = snapshot.val();
+        //                console.log(firebaseData)
+
+
+
+    </script>
+
+</head>
+<body>
+<!-- Wrapper -->
+<div id="wrapper">
+
+
+    <!-- Header -->
+    <header id="headerCustom">
+        <div class="innerCustom">
+
+            <!-- Logo -->
+            <a href="index.html" class="logo">
+                <span class="symbol"><img src="images/logo.svg" alt="" /></span><span class="title">Introducing Team Jaffy</span>
+            </a>
+
+
+        </div>
+    </header>
+
+    <!-- Menu -->
+    <nav id="menu">
+        <h2>Menu</h2>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="generic.html">Ipsum veroeros</a></li>
+            <li><a href="generic.html">Tempus etiam</a></li>
+            <li><a href="generic.html">Consequat dolor</a></li>
+            <li><a href="elements.html">Elements</a></li>
+        </ul>
+    </nav>
+
+
+    <!--Searchbar-->
+    <form id="searchBar">
+        <input type="text" name="search" class="autocomplete" id="search" placeholder="Search.." onchange="formChanged()">
+    </form>
+
+
+    <!--Getting the searchQuery-->
+
+    <script> // From https://stackoverflow.com/questions/901115/how-can-i-get-query-string-values-in-javascript
+
+    var searchObject;
+    (window.onpopstate = function () {
+        var match,
+            pl     = /\+/g,  // Regex for replacing addition symbol with a space
+            search = /([^&=]+)=?([^&]*)/g,
+            decode = function (s) { return decodeURIComponent(s.replace(pl, " ")); },
+            query  = window.location.search.substring(1);
+
+        searchObject = {};
+        while (match = search.exec(query))
+            searchObject[decode(match[1])] = decode(match[2]);
+    })();
+
+    function getsearchQuery(search) {
+        return searchObject["search"];
+    }
+    var searchQuery = getsearchQuery(search)
+
+    // variable searchQuery is the query string
+
+
+    //Getting the search Query
+
+    function formChanged() {
+        var searchQuery = document.getElementById("search").value;
+        console.log("Search Query:"+ searchQuery)
+    }
+    </script>
+
+
+
+    <!-- Main -->
+
+    <div id="main">
+        <div class="innerCustom">
+            <header>
+
+
+            </header>
+            <section class="printSearch">
+                <div id="printBox">
+                    Search Query:
+                </div>
+                <script>
+                    if(searchQuery!=null) {
+                        document.getElementById('printBox').innerHTML += searchQuery;
+                    }
+                </script>
+
+                <div id="printPriceTest">
+                    Search Result:
+                </div>
+
+
+            </section>
+
+            <script>
+                //Getting the search retrieval
+
+                var dataReceived;
+
+                function getDataFromDatabase() {
+                    var ref = firebase.database().ref("/");
+                    ref.once("value")
+                        .then(function (snapshot) {
+                            dataReceived = snapshot.child(searchQuery).val();
+                            testPrint();
+                        });
+
+                }
+
+                function testPrint(){
+                    document.getElementById('printPriceTest').innerHTML += dataReceived;
+                }
+
+                if(searchQuery!=null){
+                    getDataFromDatabase()
+                }
+
+            </script>
+
+            <section class="content_list">
+                <!--<ul class="collapsible" data-collapsible="accordion">-->
+                <!--<li>-->
+                <!--<div class="collapsible-header">Chicken</div>-->
+                <!--<div class="collapsible-body"><p>Is available at Coles for $10 per kg</p></div>-->
+                <!--</li>-->
+                <!--</ul>-->
+
+                <br>
+                <h3>Available stores:</h3>
+                <ul class="collapsible popout" data-collapsible="expandable">
+                    <li>
+                        <div class="collapsible-header active">Coles</div>
+                        <div class="collapsible-body"><span>Available for $3.6 ea</span></div>
+                    </li>
+                    <li>
+                        <div class="collapsible-header">Aldi</div>
+                        <div class="collapsible-body"><span>Available at $4 ea</span></div>
+                    </li>
+
+                </ul>
+
+            </section>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer id="footer">
+        <div class="innerCustom">
+            <section>
+                <h2>Get in touch</h2>
+                <form method="post" action="#">
+                    <div class="field half first">
+                        <input type="text" name="name" id="name" placeholder="Name" />
+                    </div>
+                    <div class="field half">
+                        <input type="email" name="email" id="email" placeholder="Email" />
+                    </div>
+                    <div class="field">
+                        <textarea name="message" id="message" placeholder="Message"></textarea>
+                    </div>
+                    <ul class="actions">
+                        <li><input type="submit" value="Send" class="special" /></li>
+                    </ul>
+                </form>
+            </section>
+            <section>
+                <h2>Follow</h2>
+                <ul class="icons">
+                    <li><a href="#" class="icon style2 fa-twitter"><span class="label">Twitter</span></a></li>
+                    <li><a href="#" class="icon style2 fa-facebook"><span class="label">Facebook</span></a></li>
+                    <li><a href="#" class="icon style2 fa-instagram"><span class="label">Instagram</span></a></li>
+                    <li><a href="#" class="icon style2 fa-dribbble"><span class="label">Dribbble</span></a></li>
+                    <li><a href="#" class="icon style2 fa-github"><span class="label">GitHub</span></a></li>
+                    <li><a href="#" class="icon style2 fa-500px"><span class="label">500px</span></a></li>
+                    <li><a href="#" class="icon style2 fa-phone"><span class="label">Phone</span></a></li>
+                    <li><a href="#" class="icon style2 fa-envelope-o"><span class="label">Email</span></a></li>
+                </ul>
+            </section>
+            <ul class="copyright">
+                <li>&copy; Untitled. All rights reserved</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+            </ul>
+        </div>
+    </footer>
+
+</div>
+
+<!-- Scripts -->
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/skel.min.js"></script>
+<script src="assets/js/util.js"></script>
+<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+<script src="assets/js/main.js"></script>
+
+
+
+</body>
+</html>

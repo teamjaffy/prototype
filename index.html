@@ -114,16 +114,18 @@
                 function getsearchQuery(search) {
                     return searchObject["search"];
                 }
-                var searchQuery = getsearchQuery(search)
-
+                var searchQuery = getsearchQuery(search);
+                if(searchQuery!=null) {
+                    var finalSearchQuery = searchQuery.toLowerCase();
+                }
                 // variable searchQuery is the query string
 
 
                 //Getting the search Query
 
                 function formChanged() {
-                    var searchQuery = document.getElementById("search").value;
-                    console.log("Search Query:"+ searchQuery)
+                    var finalSearchQuery = document.getElementById("search").value;
+                    console.log("Search Query:"+ finalSearchQuery)
                     }
                 </script>
 
@@ -142,13 +144,21 @@
                                     Search Query:
                                 </div>
                                 <script>
-                                    if(searchQuery!=null) {
-                                        document.getElementById('printBox').innerHTML += searchQuery;
+                                    if(finalSearchQuery!=null) {
+                                        document.getElementById('printBox').innerHTML += finalSearchQuery;
                                     }
                                 </script>
 
-                                <div id="printPriceTest">
-                                    Search Result:
+                                <div id="printAldi">
+                                    Search Result from Aldi:
+                                </div>
+
+                                <div id="printColes">
+                                    Search Result from Coles:
+                                </div>
+
+                                <div id="printWool">
+                                    Search Result from Woolworths:
                                 </div>
 
 
@@ -157,23 +167,48 @@
                             <script>
                                 //Getting the search retrieval
 
-                                var dataReceived;
+                                var dataReceivedFromAldi;
+                                var dataReceivedFromColes;
+                                var dataReceivedFromWool;
 
                                 function getDataFromDatabase() {
-                                    var ref = firebase.database().ref("/Coles/");
-                                    ref.once("value")
+                                    var refAldi = firebase.database().ref("/Aldi/");
+                                    refAldi.once("value")
                                         .then(function (snapshot) {
-                                            dataReceived = snapshot.child(searchQuery).val();
-                                            testPrint();
+                                            dataReceivedFromAldi = snapshot.child(finalSearchQuery).val();
+                                            testPrintAldi();
+                                        });
+
+                                    var refColes = firebase.database().ref("/Coles/");
+                                    refColes.once("value")
+                                        .then(function (snapshot) {
+                                            dataReceivedFromColes = snapshot.child(finalSearchQuery).val();
+                                            testPrintColes();
+                                        });
+
+                                    var refWool = firebase.database().ref("/Woolworths/");
+                                    refWool.once("value")
+                                        .then(function (snapshot) {
+                                            dataReceivedFromWool = snapshot.child(finalSearchQuery).val();
+                                            testPrintWool();
                                         });
 
                                 }
 
-                                function testPrint(){
-                                    document.getElementById('printPriceTest').innerHTML += dataReceived;
+                                function testPrintAldi(){
+                                    document.getElementById('printAldi').innerHTML += dataReceivedFromAldi;
                                 }
 
-                                if(searchQuery!=null){
+                                function testPrintColes(){
+                                    document.getElementById('printColes').innerHTML += dataReceivedFromColes;
+                                }
+
+                                function testPrintWool(){
+                                    document.getElementById('printWool').innerHTML += dataReceivedFromWool;
+                                }
+
+
+                                if(finalSearchQuery!=null){
                                     getDataFromDatabase()
                                 }
 
